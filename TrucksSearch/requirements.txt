@@ -1,0 +1,8 @@
+django==4.2.1
+djangorestframework==3.14.0
+geopy==2.3.0
+rstr==3.2.1
+django-filter==23.2
+psycopg2-binary==2.9.6
+celery==5.2.7
+redis==4.5.5

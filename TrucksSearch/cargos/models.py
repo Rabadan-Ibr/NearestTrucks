@@ -1,6 +1,7 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
-from django.core.validators import MaxValueValidator, MinValueValidator
+from trucks.models import Truck
 
 
 class Cargo(models.Model):
@@ -19,3 +20,15 @@ class Cargo(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(1000)],
     )
     description = models.TextField(verbose_name='Description', blank=True)
+
+    @property
+    def trucks(self):
+        """
+        Return: list of dicts with truck id and distance to pick up cargo.
+        Example: [{'truck_id': 1111A, 'distance': 100}, ...]
+        """
+        trucks = Truck.objects.select_related('location')
+        return [{
+            'truck_id': truck.id,
+            'distance': truck.location.get_distance(self.pick_up),
+        } for truck in trucks]

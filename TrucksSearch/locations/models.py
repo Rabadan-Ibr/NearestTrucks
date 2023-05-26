@@ -1,6 +1,6 @@
+from django.core.validators import (MaxValueValidator, MinValueValidator,
+                                    RegexValidator)
 from django.db import models
-
-from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
 
 
 class Location(models.Model):
@@ -20,3 +20,17 @@ class Location(models.Model):
         verbose_name='Longitude',
         validators=[MinValueValidator(-180), MaxValueValidator(180)],
     )
+
+    def __str__(self):
+        return f'{self.city}, {self.state}, {self.zip}'
+
+    def get_distance(self, location):
+        """
+        Return:
+            The distance between this location and another location in miles.
+        """
+        from geopy.distance import distance
+        return distance(
+            (self.latitude, self.longitude),
+            (location.latitude, location.longitude),
+        ).miles

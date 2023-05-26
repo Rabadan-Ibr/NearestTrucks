@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  backend:
+    restart: always
+    build:
+      context: ../TrucksSearch
+      dockerfile: ../TrucksSearch/Dockerfile.backend
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+
+  redis:
+    image: "redis:6.2-alpine"
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_db:/data
+
+  postgres_db:
+    image: "postgres:13.4-alpine"
+    ports:
+      - "5432:5432"
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+  celery:
+    build:
+      context: ../TrucksSearch
+      dockerfile: ../TrucksSearch/Dockerfile.celery
+    depends_on:
+      - backend
+      - redis
+
+volumes:
+  postgres_data:
+  redis_db:
