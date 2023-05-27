@@ -4,8 +4,8 @@ services:
   backend:
     restart: always
     build:
-      context: ../TrucksSearch
-      dockerfile: ../TrucksSearch/Dockerfile.backend
+      context: ../backend
+      dockerfile: ../backend/Dockerfile.backend
     env_file: devops.env
     ports:
       - "8000:8000"

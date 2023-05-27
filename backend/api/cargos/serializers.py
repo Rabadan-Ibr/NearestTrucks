@@ -32,7 +32,7 @@ class TruckInCargoSerializer(serializers.Serializer):
     distance = serializers.IntegerField()
 
 
-class CargoDetailSerializer(serializers.ModelSerializer):
+class CargoDetailUpdateSerializer(serializers.ModelSerializer):
     pick_up = serializers.StringRelatedField()
     delivery = serializers.StringRelatedField()
     trucks = TruckInCargoSerializer(many=True, read_only=True)

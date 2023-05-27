@@ -5,7 +5,8 @@ from rest_framework.viewsets import ModelViewSet
 
 from api.cargos.filters import CargoFilter
 from api.cargos.serializers import (CargoCreateSerializer,
-                                    CargoDetailSerializer, CargoListSerializer)
+                                    CargoDetailUpdateSerializer,
+                                    CargoListSerializer)
 from cargos.models import Cargo
 from config import settings
 from trucks.models import Truck
@@ -23,7 +24,7 @@ class CargoViewSet(ModelViewSet):
         elif self.action == 'list':
             self.serializer_class = CargoListSerializer
         else:
-            self.serializer_class = CargoDetailSerializer
+            self.serializer_class = CargoDetailUpdateSerializer
         return super().get_serializer_class()
 
     def list(self, request, *args, **kwargs):

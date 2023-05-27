@@ -11,6 +11,6 @@ class TruckViewSet(ListModelMixin, UpdateModelMixin, GenericViewSet):
     http_method_names = ['get', 'patch', 'options', 'head']
 
     def get_serializer_class(self):
-        if self.action == 'update':
-            return TruckUpdateSerializer
+        if self.action == 'partial_update':
+            self.serializer_class = TruckUpdateSerializer
         return super().get_serializer_class()
