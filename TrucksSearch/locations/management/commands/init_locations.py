@@ -4,8 +4,8 @@ import logging
 from django.core.exceptions import ValidationError
 from django.core.management.base import BaseCommand
 
+from config import settings
 from locations.models import Location
-from TrucksSearch import settings
 
 
 class Command(BaseCommand):

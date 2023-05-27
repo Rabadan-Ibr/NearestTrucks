@@ -1,2 +1,2 @@
-celery -A TrucksSearch.celery beat -l info &
-celery -A TrucksSearch.celery worker -l info
+celery -A config.celery beat -l info &
+celery -A config.celery worker -l info

@@ -11,6 +11,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 ]
 
 MY_APPS = [
@@ -32,7 +33,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'TrucksSearch.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -50,7 +51,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'TrucksSearch.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 AUTH_PASSWORD_VALIDATORS = [

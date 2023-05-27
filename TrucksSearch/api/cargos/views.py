@@ -7,14 +7,15 @@ from api.cargos.filters import CargoFilter
 from api.cargos.serializers import (CargoCreateSerializer,
                                     CargoDetailSerializer, CargoListSerializer)
 from cargos.models import Cargo
+from config import settings
 from trucks.models import Truck
-from TrucksSearch import settings
 
 
 class CargoViewSet(ModelViewSet):
     queryset = Cargo.objects.select_related('pick_up', 'delivery')
     filter_backends = [DjangoFilterBackend]
     filterset_class = CargoFilter
+    http_method_names = ['get', 'patch', 'options', 'head', 'delete', 'post']
 
     def get_serializer_class(self):
         if self.action == 'create':

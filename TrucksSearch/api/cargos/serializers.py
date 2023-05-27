@@ -2,7 +2,6 @@ from rest_framework import serializers
 
 from cargos.models import Cargo
 from locations.models import Location
-from TrucksSearch import settings
 
 
 class CargoCreateSerializer(serializers.ModelSerializer):

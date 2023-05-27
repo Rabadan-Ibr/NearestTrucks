@@ -3,9 +3,9 @@ from random import randrange
 from django.core.management.base import BaseCommand
 from rstr import xeger
 
+from config import settings
 from locations.models import Location
 from trucks.models import Truck
-from TrucksSearch import settings
 
 
 class Command(BaseCommand):

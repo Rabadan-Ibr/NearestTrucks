@@ -1,8 +1,8 @@
 from random import randrange
 
+from config.celery import app
 from locations.models import Location
 from trucks.models import Truck
-from TrucksSearch.celery import app
 
 
 @app.task()

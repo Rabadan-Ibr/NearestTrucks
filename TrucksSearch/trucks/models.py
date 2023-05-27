@@ -2,7 +2,7 @@ from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
 
-from TrucksSearch import settings
+from config import settings
 
 
 class Truck(models.Model):
