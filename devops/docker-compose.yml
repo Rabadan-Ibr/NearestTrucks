@@ -6,8 +6,7 @@ services:
     build:
       context: ../TrucksSearch
       dockerfile: ../TrucksSearch/Dockerfile.backend
-    env_file:
-      - .env
+    env_file: devops.env
     ports:
       - "8000:8000"
     depends_on:
@@ -25,7 +24,7 @@ services:
     image: "postgres:13.4-alpine"
     ports:
       - "5432:5432"
-    env_file: .env
+    env_file: devops.env
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
@@ -33,6 +32,7 @@ services:
     build:
       context: ../TrucksSearch
       dockerfile: ../TrucksSearch/Dockerfile.celery
+    env_file: devops.env
     depends_on:
       - backend
       - redis

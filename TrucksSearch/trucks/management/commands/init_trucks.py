@@ -3,9 +3,9 @@ from random import randrange
 from django.core.management.base import BaseCommand
 from rstr import xeger
 
-from TrucksSearch import settings
 from locations.models import Location
 from trucks.models import Truck
+from TrucksSearch import settings
 
 
 class Command(BaseCommand):
@@ -22,7 +22,7 @@ class Command(BaseCommand):
         batch = []
         for _ in range(need_count):
             while True:
-                new_id = xeger(r'^[0-9]{4}[A-Z]{1}$')
+                new_id = xeger(settings.TRUCK_ID_REGEX)
                 if new_id not in existing_trucks:
                     break
 

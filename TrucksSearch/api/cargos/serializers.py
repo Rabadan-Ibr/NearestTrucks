@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-from TrucksSearch import settings
 from cargos.models import Cargo
 from locations.models import Location
+from TrucksSearch import settings
 
 
 class CargoCreateSerializer(serializers.ModelSerializer):
@@ -21,26 +21,11 @@ class CargoCreateSerializer(serializers.ModelSerializer):
 class CargoListSerializer(serializers.ModelSerializer):
     pick_up = serializers.StringRelatedField()
     delivery = serializers.StringRelatedField()
-    near_trucks_count = serializers.SerializerMethodField()
+    near_trucks_amount = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Cargo
-        fields = ('id', 'pick_up', 'delivery', 'near_trucks_count')
-
-    def get_near_trucks_count(self, cargo):
-        """
-        Return: The number of trucks located no more than a specified distance.
-        """
-        count = 0
-        max_distance = (
-            cargo.max_distance
-            if hasattr(cargo, 'max_distance')
-            else settings.DEFAULT_MAX_DISTANCE
-        )
-        for truck in cargo.trucks:
-            if truck['distance'] <= max_distance:
-                count += 1
-        return count
+        fields = ('id', 'pick_up', 'delivery', 'near_trucks_amount')
 
 
 class TruckInCargoSerializer(serializers.Serializer):

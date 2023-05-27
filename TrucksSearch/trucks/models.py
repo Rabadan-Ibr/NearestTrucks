@@ -2,11 +2,13 @@ from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
 
+from TrucksSearch import settings
+
 
 class Truck(models.Model):
     id = models.CharField(
         verbose_name='ID',
-        validators=[RegexValidator(r'^[0-9]{4}[A-Z]{1}$')],
+        validators=[RegexValidator(settings.TRUCK_ID_REGEX)],
         max_length=5,
         primary_key=True,
     )
