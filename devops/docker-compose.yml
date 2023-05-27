@@ -30,8 +30,8 @@ services:
 
   celery:
     build:
-      context: ../TrucksSearch
-      dockerfile: ../TrucksSearch/Dockerfile.celery
+      context: ../backend
+      dockerfile: ../backend/Dockerfile.celery
     env_file: devops.env
     depends_on:
       - backend

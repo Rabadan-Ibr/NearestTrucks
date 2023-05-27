@@ -21,6 +21,13 @@ class Cargo(models.Model):
     )
     description = models.TextField(verbose_name='Description', blank=True)
 
+    class Meta:
+        verbose_name = 'Cargo'
+        verbose_name_plural = 'Cargos'
+
+    def __str__(self):
+        return f'{self.id}: {self.pick_up} -> {self.delivery}'
+
     @property
     def trucks(self):
         """

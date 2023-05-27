@@ -21,6 +21,11 @@ class Location(models.Model):
         validators=[MinValueValidator(-180), MaxValueValidator(180)],
     )
 
+    class Meta:
+        verbose_name = 'location'
+        verbose_name_plural = 'locations'
+        ordering = ['city', 'state', 'zip']
+
     def __str__(self):
         return f'{self.city}, {self.state}, {self.zip}'
 

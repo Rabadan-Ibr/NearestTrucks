@@ -21,3 +21,11 @@ class Truck(models.Model):
         verbose_name='Payload',
         validators=[MinValueValidator(1), MaxValueValidator(1000)],
     )
+
+    class Meta:
+        verbose_name = 'Truck'
+        verbose_name_plural = 'Trucks'
+        ordering = ('id',)
+
+    def __str__(self):
+        return f'ID:{self.id}, max_load:{self.payload}'
